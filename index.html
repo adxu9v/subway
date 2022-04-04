@@ -9,39 +9,70 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="shortcut icon" href="subway_logo.ico" type="#">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+      $('#slide_btn>li').click(function(){
+          $(this).css({'width':'25px','background-color':'#ffce32'}).siblings().css({'width':'10px',"background-color":'#fff'})
+          $('#slide_box').stop().animate({'left':($(this).index()*-100)+'%'})
+      })
+      $('#menu>li').mouseenter(function(){
+          $('.sub').stop().slideDown();
+          $('.sub_bg').stop().slideDown();
+      })
+      $('#menu>li').stop().mouseleave(function(){
+          $('.sub').stop().slideUp();
+          $('.sub_bg').stop().slideUp();
+      })
+      let num = 0;
+      setInterval(function(){
+        num = num - 100;
+        if(num <-300){num = 0}
+        $('#slide_box').animate({'left':num+'%'})
+        $('#slide_btn>li:nth-child('+((num*-0.01)+1)+')').stop().css({'width':'25px','background-color':'#ffce32'}).siblings().css({'width':'10px',"background-color":'#fff'})
+      },5000)
+  });
+</script>
     <style>
         *{padding: 0; margin: 0; list-style: none; font-family: 'Noto Sans KR', sans-serif;}
         header{width: 100%; height: 165px; border-top: 5px solid #009223; border-bottom: 1px solid #eee;text-align: center; position: relative;}
         #header_menu2{width: 1170px; height: 40px; position: absolute; left: 0; right: 0; margin: auto; top: 35px;}
         #header_menu2>ul{float: right; margin-top: 5px;}
-        #header_menu2>ul>li{display: inline-block; vertical-align: middle; margin-left: 15px; font-size: 12px;}
+        #header_menu2>ul>li{display: inline-block; vertical-align: middle; margin-left: 15px; font-size: 12px; cursor: pointer;}
         #header_menu>ul>li>img{vertical-align: middle;}
-        #logo{width: 1170px; margin: auto; margin-top: 37px; z-index: 999; position: relative;}
-        #menu{width: 1170px; margin: auto; margin-top: 30px;}
-        #menu>li{display: inline-block; margin: 0 55px; font-size: 18px; font-weight: 700;}
-        #slide{width: 100%; height: 440px; background: url(main_PC_1920x440_20201006040046969.jpg) center no-repeat; position: relative;}
+        #logo{width: 1170px; margin: auto; margin-top: 37px; z-index: 999; position: relative; cursor: pointer;}
+        #menu{width: 1000px; margin: auto; margin-top: 20px;}
+        #menu>li:not(#menu>li:last-child){float: left; width: 16.6666%; line-height: 60px; font-size: 18px; font-weight: 700; cursor: pointer; position: relative; transition: 0.3s;}
+        #menu>li:hover{color: #009233;}
+        #slide{width: 100%; height: 440px; position: relative; overflow: hidden; cursor: pointer;}
+        #slide_box{position: absolute; left: 0; top: 0; width: 400%;}
+        #slide_box>li{float: left; width: 25%;}
         #slide_btbox{width: 1170px; height: 130px; position: absolute; left: 0; right: 0; margin: auto; bottom: -50px;}
         #slide_btbox_right{width: 600px; height: 110px; float: right; margin-top: 10px;}
         #slide_btn{float: right; margin-bottom: 15px;}
-        #slide_btn>li{width: 10px; height: 10px; border-radius: 10px; margin: 4px; background-color: #fff; float: left;}
+        #slide_btn>li{width: 10px; height: 10px; border-radius: 10px; margin: 4px; background-color: #fff; float: left; transition: 0.3s; cursor: pointer;}
         #slide_btn>li:first-child{width: 25px;background-color: #ffce32;}
         #slide_btbox_info{clear: both; margin-top: 10px;}
         #slide_btbox_info>li{width: 300px; height: 80px; float: left; line-height: 80px; font-size: 22px; text-align: center;}
         #slide_btbox_info>li:first-child{background-color: #ffce32; border-radius: 30px 0 0 0; color: #000;}
         #slide_btbox_info>li:nth-child(2){background-color: #009233; border-radius: 0 0 30px 0; color: #fff;}
         #slide_btbox_info>li>img{vertical-align: middle;}
+        .sub{ position: absolute; left: 0; top: 60px; width: 100%; height: 250px; z-index: 999; display: none;}
+        .sub>li{line-height: 40px; font-size: 16px; font-weight: 400; color: #666; }
+        .sub>li:hover{color: #009233; text-decoration: underline;}
+        #menu>.sub_bg{width: 100%; position: absolute; left: 0; top: 165px; background-color: #fff; height: 250px; z-index: 998; display: none;}
         #subway_menu{width: 1170px; height: 420px; margin: auto; margin-top: 100px; position: relative;}
         #subway_menu_left_btn{position: absolute; top: 220px; left: -100px; width: 50px; height: 50px; background: url(icon_event_slider_arr.png) 0 0 no-repeat;}
         #subway_menu_left_btn:hover{background: url(icon_event_slider_arr.png) 0 -50px no-repeat; cursor: pointer;}
         #subway_menu_right_btn{position: absolute; top: 220px; right: -100px; width: 50px; height: 50px; background: url(icon_event_slider_arr.png) -50px 0 no-repeat;}
         #subway_menu_right_btn:hover{background: url(icon_event_slider_arr.png) -50px -50px no-repeat; cursor: pointer;}
         #subway_menu_title{width: 340px; height: 60px; float: left;}
-        #subway_menu_nb{height: 15px; float: right; margin-top: 20px;}
+        #subway_menu_nb{height: 15px; float: right; margin-top: 20px; cursor: pointer;}
         #subway_menu_list{width: 1170px; height: 280px; margin-top: 140px; position: absolute; left: 0; bottom: 50px; text-align: center;}
         #subway_menu_list>li::after{content:""; display: block; clear: both;}
         #subway_menu_list>li>h4{margin-bottom: 10px; font-size: 18px;}
         #subway_menu_list>li>p{font-size: 13px; color: #999; }
-        #subway_menu_list>li{width: 25%; float: left;}
+        #subway_menu_list>li{width: 25%; float: left; cursor: pointer;}
         #subway_menu_list>li>img{width: 100%;}
         #subway_menu_title_icon{width: 60px; height: 60px;background-color: #ffce32; border-radius: 30px 30px 0 30px; float: left; }
         #subway_menu_title>h2{color: #292929; font-weight: 900; font-size: 30px; float: left; line-height: 60px; margin-left: -30px; }
@@ -49,8 +80,8 @@
         #subway_menu_nb>li:last-child{padding-right: 0; border-right: none;}
         #board{width: 100%; height: 790px; background:url(bg_content.gif) repeat; margin: 150px auto 0px; overflow: hidden;}
         #board_box{width: 1170px; height: 630px; margin: auto; margin-top: 80px; position: relative;}
-        #board_box>li:nth-child(1){width: 400px; height: 300px; background: url(bg_utilization.png); position: absolute; top: 0; left: 0; padding: 40px; box-sizing: border-box;}
-        #board_box>li:nth-child(2){width: 825px; height: 300px; background:url(img_subway_history.png); position: absolute; top: 0; left:400px; padding: 40px; padding-left: 400px; box-sizing: border-box;}
+        #board_box>li:nth-child(1){width: 400px; height: 300px; background: url(bg_utilization.png); position: absolute; top: 0; left: 0; padding: 40px; box-sizing: border-box; cursor: pointer;}
+        #board_box>li:nth-child(2){width: 825px; height: 300px; background:url(img_subway_history.png); position: absolute; top: 0; left:400px; padding: 40px; padding-left: 400px; box-sizing: border-box; cursor: pointer;}
         #board_box>li:nth-child(3){width: 875px; height: 300px; background-color: #fff;      font-size: 25px; position: absolute; bottom: 0; left: 0; border-radius: 30px 0 30px 0;padding: 50px; box-sizing: border-box;}
         #board_box_new{width: 200px; height: 200px; float: left; text-align: center;}
         #board_box_notice{width: 500px; height: 200px; float: right;}
@@ -58,18 +89,18 @@
         #board_box_new_title_bg{width: 50px; height: 50px; border-radius: 50px 50px 0 50px; float: left; background-color: #ffce32;}
         #board_box_new_title>h4{line-height: 50px; float: left; font-size: 25px; margin-left: -25px;}
         #board_box_new>p{color: #999; margin-top: 20px; font-size: 18px;}
-        #board_box_notice>ul>li{margin-top: 20px; font-size: 16px;}
-        #board_box_notice>h6{margin-top: 20px; font-size: 12px;}
+        #board_box_notice>ul>li{margin-top: 20px; font-size: 16px; cursor: pointer;}
+        #board_box_notice>h6{margin-top: 20px; font-size: 12px; cursor: pointer;}
         #board_box_notice>ul>li:hover{color: #33cc33; text-decoration: underline;}
         #board_box>li:nth-child(4){width: 270px; height: 300px; background:url(banner_20220103010117019.jpg); position: absolute; bottom: 0; right: 0;  border-radius: 0 30px 0 30px ;}
         #board_box>li>h4{font-size: 25px; color: #fff;}
-        #board_box>li>button{background-color: transparent; padding: 10px 15px; border: 1px  solid #fff; border-radius: 100px; color: #fff; margin-top: 90px; font-size: 16px;}
+        #board_box>li>button{background-color: transparent; padding: 10px 15px; border: 1px  solid #fff; border-radius: 100px; color: #fff; margin-top: 90px; font-size: 16px; cursor: pointer;}
         #footer_icon{width: 1170px; height: 150px; margin: auto; text-align: center;}
         #footer_icon>li:nth-child(1)>.footer_iconbox{background: url(icon_quickmenu.png) 0 0}
         #footer_icon>li:nth-child(2)>.footer_iconbox{background: url(icon_quickmenu.png) -70px 0}
         #footer_icon>li:nth-child(3)>.footer_iconbox{background: url(icon_quickmenu.png) -140px 0}
         #footer_icon>li:nth-child(4)>.footer_iconbox{background: url(icon_quickmenu.png) -210px 0}
-        #footer_icon>li{overflow: hidden; display: inline-block; margin: 40px;}
+        #footer_icon>li{overflow: hidden; display: inline-block; margin: 40px; cursor: pointer;}
         .footer_iconbox{width: 70px; height: 70px; background-color: #ff0000; float: left;}
         .footer_icontext{float: left; text-align: left; margin-top: 15px; margin-left: 20px;}
         .footer_icontext>h4{font-size: 16px;}
@@ -77,16 +108,16 @@
         footer{width: 100%; height: 150px; background-color: #292929;}
         #footer1{width: 100%; height: 60px; border-bottom: 1px solid #3b3b3b;}
         #footer1_box{width: 1170px; height: 58px; margin: auto; font-size: 16px; color: #666;}
-        #footer1_box>ul>li{float: left; margin-right: 15px; line-height: 60px;}
+        #footer1_box>ul>li{float: left; margin-right: 15px; line-height: 60px; cursor: pointer;}
         #footer1_box>ul>li:nth-child(2){color: #aaa; font-weight: 900;}
         #footer2{width: 100%; height: 90px; background-color: #292929;}
         #footer2_box{width: 1170px; height: 88px; margin: auto; color: #666;}
         #footer2_left{width: 800px; height: 60px; float: left; margin-top: 13px;}
         #footer2_left>ul>li{display: inline-block; font-size: 14px;}
         #footer2_left>ul>li::after{content: "|"; margin: 0 6px; font-size: 14px;}
-        #footer2_left>ul>li:last-child::after{content: "";}
+        #footer2_left>ul>li:last-child::after{content: " ";}
         #footer2_right{width: 120px; height: 60px; float: right; margin-top: 13px;}
-        #footer2_right>ul>li{width: 50px; height: 50px; float: right; background-color: blue;; margin: 5px; border-radius: 50px;}
+        #footer2_right>ul>li{width: 50px; height: 50px; float: right; background-color: blue;; margin: 5px; border-radius: 50px; cursor: pointer;}
         #footer2_right>ul>li:nth-child(1){background: url(icon_sns_facebook.png) 0 0; }
         #footer2_right>ul>li:nth-child(1):hover{background: url(icon_sns_facebook.png) -50px 0;}
         #footer2_right>ul>li:nth-child(2){background: url(icon_sns_instar.png) 0 0;}
@@ -106,20 +137,69 @@
             <img src="logo_w.png" alt="">
         </h1>
         <ul id="menu">
-            <li>메뉴소개</li>
-            <li>이용방법</li>
-            <li>새소식</li>
-            <li>써브웨이</li>
-            <li>가맹점</li>
-            <li>온라인 주문</li>
+            <li>메뉴소개
+                <ul class="sub">
+                <li>샌드위치</li>
+                <li>랩, 기타</li>
+                <li>샐러드</li>
+                <li>아침메뉴</li>
+                <li>스마일 썹</li>
+                <li>단체메뉴</li>
+                </ul>
+            </li>
+            <li>이용방법
+                <ul class="sub">
+                    <li>써브웨이 이용방법</li>
+                    <li>단체메뉴 이용방법</li>
+                    <li>신선한 재료 소개</li>
+                    <li>App 이용방법</li>
+                </ul>
+            </li>
+            <li>새소식
+                <ul class="sub">
+                    <li>이벤트, 프로모션</li>
+                    <li>뉴스, 공지사항</li>
+                    <li>광고영상</li>
+                </ul>
+            </li>
+            <li>써브웨이
+                <ul class="sub">
+                    <li>써브웨이 역사</li>
+                    <li>써브웨이 약속</li>
+                    <li>샌드위치 아티스트 지원</li>
+                    <li>매장찾기</li>
+                </ul>
+            </li>
+            <li>가맹점
+                <ul class="sub">
+                    <li>써브웨이 프랜차이즈</li>
+                    <li>가맹관련 FAQ</li>
+                    <li>가맹신청, 문의</li>
+                    <li>지사안내</li>
+                    <li>사업설명회</li>
+                </ul>
+            </li>
+            <li>온라인 주문
+                <ul class="sub">
+                    <li>FAST-SUB</li>
+                    <li>HOME-SUB</li>
+                    <li>단체주문</li>
+                </ul>
+            </li>
+            <li class="sub_bg"></li>
         </ul>
     </header>
     <div id="slide">
+        <ul id="slide_box">
+            <li><img src="main_PC_1920x440_20201006040046969.jpg" alt=""></li>
+            <li><img src="main_PC_1920x440_20211231014551263.jpg" alt=""></li>
+            <li><img src="main_PC_1920x440_20220103092455892.jpg" alt=""></li>
+            <li><img src="main_PC_1920x440_20220112031834554.jpg" alt=""></li>
+        </ul>
         <div id="slide_btbox">
             <div id="slide_btbox_right">
                 <ul id="slide_btn">
                     <li id="Btn"></li>
-                    <li></li>
                     <li></li>
                     <li></li>
                     <li></li>
