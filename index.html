@@ -17,12 +17,14 @@
           $('#slide_box').stop().animate({'left':($(this).index()*-100)+'%'})
       })
       $('#menu>li').mouseenter(function(){
-          $('.sub').stop().slideDown();
-          $('.sub_bg').stop().slideDown();
+          $('.sub').stop().slideDown(150).stop().css({'top':'60px'});
+          $('.sub>li').stop().css({'opacity':'1'});
+          $('.sub_bg').stop().slideDown(200);
       })
       $('#menu>li').stop().mouseleave(function(){
-          $('.sub').stop().slideUp();
-          $('.sub_bg').stop().slideUp();
+          $('.sub').stop().slideUp(150).stop().css({'top':'50px'});
+          $('.sub>li').stop().css({'opacity':'0'});
+          $('.sub_bg').stop().slideUp(200);
       })
       let num = 0;
       setInterval(function(){
@@ -31,12 +33,12 @@
         $('#slide_box').animate({'left':num+'%'})
         $('#slide_btn>li:nth-child('+((num*-0.01)+1)+')').stop().css({'width':'25px','background-color':'#ffce32'}).siblings().css({'width':'10px',"background-color":'#fff'})
       },5000)
-      $('#subway_menu_list>li').mouseenter(function(){
-          $(this).children('p').css({'display':'none'}).parent().children('h4').css({'font-size':'22px'}).parent().children('img').css({'width':'110%','z-index':'2'})
-      })
-      $('#subway_menu_list>li').mouseleave(function(){
-          $(this).children('p').css({'display':'block'}).parent().children('h4').css({'font-size':'18px'}).parent().children('img').css({'width':'100%','z-index':'1'})
-      })
+    //   $('#subway_menu_list>li').mouseenter(function(){
+    //       $(this).children('p').css({'display':'none'}).parent().children('h4').css({'font-size':'22px'}).parent().children('img').css({'width':'110%','z-index':'2'})
+    //   })
+    //   $('#subway_menu_list>li').mouseleave(function(){
+    //       $(this).children('p').css({'display':'block'}).parent().children('h4').css({'font-size':'18px'}).parent().children('img').css({'width':'100%','z-index':'1'})
+    //   })
   });
 </script>
     <style>
@@ -58,13 +60,13 @@
         #slide_btn{float: right; margin-bottom: 15px;}
         #slide_btn>li{width: 10px; height: 10px; border-radius: 10px; margin: 4px; background-color: #fff; float: left; transition: 0.3s; cursor: pointer;}
         #slide_btn>li:first-child{width: 25px;background-color: #ffce32;}
-        #slide_btbox_info{clear: both; margin-top: 10px;}
+        #slide_btbox_info{position: absolute; right: 0; top: -140px;}
         #slide_btbox_info>li{width: 300px; height: 80px; float: left; line-height: 80px; font-size: 22px; text-align: center;}
         #slide_btbox_info>li:first-child{background-color: #ffce32; border-radius: 30px 0 0 0; color: #000;}
         #slide_btbox_info>li:nth-child(2){background-color: #009233; border-radius: 0 0 30px 0; color: #fff;}
         #slide_btbox_info>li>img{vertical-align: middle;}
-        .sub{ position: absolute; left: 0; top: 60px; width: 100%; height: 250px; z-index: 999; display: none;}
-        .sub>li{line-height: 40px; font-size: 16px; font-weight: 400; color: #666; }
+        .sub{ position: absolute; left: 0; top: 60px; width: 100%; height: 250px; z-index: 999; display: none; transition: 0.2s;}
+        .sub>li{line-height: 40px; font-size: 16px; font-weight: 400; color: #666; transition: 0.2s;}
         .sub>li:hover{color: #009233; text-decoration: underline;}
         #menu>.sub_bg{width: 100%; position: absolute; left: 0; top: 165px; background-color: #fff; height: 250px; z-index: 998; display: none;}
         #subway_menu{width: 1170px; height: 420px; margin: auto; margin-top: 100px; position: relative;}
@@ -210,14 +212,14 @@
                     <li></li>
                     <li></li>
                 </ul>
-                <ul id="slide_btbox_info">
-                    <li><img src="Sub_icon1-01.png" alt="">매장찾기</li>
-                    <li><img src="Untitled-1.png" alt="">가맹신청 • 문의</li>
-                </ul>
             </div>
         </div>
     </div>
     <div id="subway_menu">
+        <ul id="slide_btbox_info">
+            <li><img src="Sub_icon1-01.png" alt="">매장찾기</li>
+            <li><img src="Untitled-1.png" alt="">가맹신청 • 문의</li>
+        </ul>
         <div id="subway_menu_left_btn"></div>
         <div id="subway_menu_right_btn"></div>
 <div id="subway_menu_title">
