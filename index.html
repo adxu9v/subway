@@ -17,20 +17,20 @@
           $('#slide_box').stop().animate({'left':($(this).index()*-100)+'%'})
       })
       $('#menu>li').mouseenter(function(){
-          $('.sub').stop().slideDown(150).stop().css({'top':'60px'});
-          $('.sub>li').stop().css({'opacity':'1'});
-          $('.sub_bg').stop().slideDown(200);
+        $('.sub').stop().slideDown();
+        $('.sub>li').stop().animate({'opacity':'1'}).css({'margin-top':'5px'})
+        $('.sub_bg').stop().slideDown();
       })
-      $('#menu>li').stop().mouseleave(function(){
-          $('.sub').stop().slideUp(150).stop().css({'top':'50px'});
-          $('.sub>li').stop().css({'opacity':'0'});
-          $('.sub_bg').stop().slideUp(200);
+      $('#menu>li').mouseleave(function(){
+        $('.sub').stop().slideUp();
+        $('.sub>li').stop().animate({'opacity':'0'}).css({'margin-top':'0px'})
+        $('.sub_bg').stop().slideUp();
       })
       let num = 0;
       setInterval(function(){
         num = num - 100;
         if(num <-300){num = 0}
-        $('#slide_box').animate({'left':num+'%'})
+        $('#slide_box').stop().animate({'left':num+'%'})
         $('#slide_btn>li:nth-child('+((num*-0.01)+1)+')').stop().css({'width':'25px','background-color':'#ffce32'}).siblings().css({'width':'10px',"background-color":'#fff'})
       },5000)
     //   $('#subway_menu_list>li').mouseenter(function(){
@@ -50,9 +50,11 @@
         #header_menu>ul>li>img{vertical-align: middle;}
         #logo{width: 1170px; margin: auto; margin-top: 37px; z-index: 999; position: relative; cursor: pointer;}
         #menu{width: 1000px; margin: auto; margin-top: 20px;}
+        #menu::after{content: ""; display: block; clear: both;}
+        #menu>li{background-color: #fff;}
         #menu>li:not(#menu>li:last-child){float: left; width: 16.6666%; line-height: 60px; font-size: 18px; font-weight: 700; cursor: pointer; position: relative; transition: 0.3s;}
         #menu>li:hover{color: #009233;}
-        #slide{width: 100%; height: 440px; position: relative; overflow: hidden; cursor: pointer;}
+        #slide{width: 100%; height: 440px; position: relative; overflow: hidden; cursor: pointer; }
         #slide_box{position: absolute; left: 0; top: 0; width: 400%;}
         #slide_box>li{float: left; width: 25%;}
         #slide_btbox{width: 1170px; height: 130px; position: absolute; left: 0; right: 0; margin: auto; bottom: -50px;}
@@ -65,10 +67,10 @@
         #slide_btbox_info>li:first-child{background-color: #ffce32; border-radius: 30px 0 0 0; color: #000;}
         #slide_btbox_info>li:nth-child(2){background-color: #009233; border-radius: 0 0 30px 0; color: #fff;}
         #slide_btbox_info>li>img{vertical-align: middle;}
-        .sub{ position: absolute; left: 0; top: 60px; width: 100%; height: 250px; z-index: 999; display: none; transition: 0.2s;}
+        .sub{ position: absolute; left: 0; top: 60px; width: 100%; z-index: 999; display: none;}
         .sub>li{line-height: 40px; font-size: 16px; font-weight: 400; color: #666; transition: 0.2s;}
         .sub>li:hover{color: #009233; text-decoration: underline;}
-        #menu>.sub_bg{width: 100%; position: absolute; left: 0; top: 165px; background-color: #fff; height: 250px; z-index: 998; display: none;}
+        .sub_bg{width: 100%; position: absolute; left: 0; top: 165px; background-color: #fff; height: 300px; z-index: 998; display: none;}
         #subway_menu{width: 1170px; height: 420px; margin: auto; margin-top: 100px; position: relative;}
         #subway_menu_left_btn{position: absolute; top: 220px; left: -100px; width: 50px; height: 50px; background: url(icon_event_slider_arr.png) 0 0 no-repeat;}
         #subway_menu_left_btn:hover{background: url(icon_event_slider_arr.png) 0 -50px no-repeat; cursor: pointer;}
@@ -196,6 +198,7 @@
             </li>
             <li class="sub_bg"></li>
         </ul>
+        
     </header>
     <div id="slide">
         <ul id="slide_box">
